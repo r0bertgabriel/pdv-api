@@ -1,0 +1,43 @@
+# =================================
+# = Server
+# =================================
+server:
+  port: 8080
+    # servlet:
+    # context-path: /v1   #  controle de versao
+
+# =================================
+# = Spring
+# =================================
+spring:
+    profiles:
+        active: dev
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/pdvdb?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+        username: root
+        password: root
+        type: com.zaxxer.hikari.HikariDataSource
+    jpa: 
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+        generate-ddl: true
+        show-sql: true
+        properties:
+            hibernate: 
+                # update atualiza os schemas de banco de dados, none, validate, update, create, create-drop
+                ddl-auto: update
+    mvc:
+        pathmatch:
+            matching-strategy: ANT_PATH_MATCHER
+        hiddenmethod: 
+            filter: 
+                enabled: true
+
+
+# =================================
+# = Logging - INFO - TRACE - DEBUG - ERROR
+# =================================
+logging:
+    level:
+        org-springframework: INFO
+        # org-flywaydb: INFO
